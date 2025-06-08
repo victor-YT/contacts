@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ContactStore } from '@/store/ContactStore';
+import { ContactStore } from '@/store/contactStore';
 import Spinner from '@/components/Spinner';
 import ContactActionButton from '@/components/ContactActionButton';
 import InfoCard from '@/components/InfoCard';
