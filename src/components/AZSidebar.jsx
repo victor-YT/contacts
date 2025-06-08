@@ -9,7 +9,7 @@ export default function AZSidebar({ letters }) {
     return (
         <div>
             {/* small screen */}
-            <div className="fixed top-[55%] -translate-y-1/2 right-2 flex flex-col items-center space-y-1 z-10 md:hidden">
+            <div className="fixed top-[58%] -translate-y-1/2 right-2 flex flex-col items-center space-y-1 z-10 md:hidden">
                 {letters.map(letter => (
                     <button
                         key={letter}
