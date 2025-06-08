@@ -1,4 +1,3 @@
-// src/components/ContactDetailPanel.jsx
 'use client';
 
 import { useEffect, useState } from 'react';

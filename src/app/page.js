@@ -6,7 +6,7 @@ import ContactCard from '@/components/ContactCard';
 import Spinner from '@/components/Spinner';
 import AZSidebar from '@/components/AZSidebar';
 import { ContactStore } from '@/store/contactStore';
-import ContactDetailPanel from '@/components/ContactDetailPanel'; // 新加
+import ContactDetailPanel from '@/components/ContactDetailPanel';
 
 export default function HomePage() {
     const contacts = ContactStore((state) => state.contacts);
@@ -59,7 +59,7 @@ export default function HomePage() {
 
     return (
         <main className="flex flex-col md:flex-row h-screen">
-            {/* 左栏 */}
+            {/* left view */}
             <div className="relative md:w-1/3 p-4 overflow-y-auto bg-[#FAFAFA]">
                 <AZSidebar letters={fullLetters} />
 
@@ -88,12 +88,12 @@ export default function HomePage() {
 
                             {sectionContacts.map((contact) => (
                                 <div key={contact.id} className="mb-2 pr-4">
-                                    {/* 手机端 Link 跳转 */}
+                                    {/* Link jump on phone */}
                                     <Link href={`/contacts/${contact.id}`} className="block md:hidden">
                                         <ContactCard contact={contact} />
                                     </Link>
 
-                                    {/* 大屏点击更新右栏 */}
+                                    {/* show on the right hand side if it's tablet or laptop */}
                                     <div
                                         className="hidden md:block"
                                         onClick={() => setSelectedContactId(contact.id)}
@@ -107,7 +107,7 @@ export default function HomePage() {
                 })}
             </div>
 
-            {/* 右栏 */}
+            {/* right view */}
             <div className="hidden md:block md:w-2/3 border-l">
                 <ContactDetailPanel />
             </div>

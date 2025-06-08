@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ContactStore } from '@/store/contactStore';
 import Spinner from '@/components/Spinner';
@@ -12,21 +12,20 @@ import Link from 'next/link';
 import { FaArrowLeft, FaSms, FaUserCircle, FaPhoneAlt, FaEnvelope, FaGlobe, FaMapMarkerAlt, FaBuilding, FaUser } from 'react-icons/fa';
 
 export default function ContactDetailPage() {
-    const router = useRouter();
     const params = useParams();
     const { id } = params;
 
     const contacts = ContactStore((state) => state.contacts);
 
-    // ✅ 优先用 store 里的 contact
+    // first use contact in store
     const initialContact = contacts.find((c) => c.id === Number(id));
 
-    // ✅ local state 存 contact
+    // local state to store contact
     const [contact, setContact] = useState(initialContact);
 
-    // ✅ fallback fetch → 兼容直接访问 URL
+    // fallback fetch
     useEffect(() => {
-        if (contact) return; // 有 contact → 不用 fetch
+        if (contact) return; // if there is contact → don't need to fetch
 
         const fetchSingleContact = async () => {
             const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
@@ -37,25 +36,25 @@ export default function ContactDetailPage() {
         fetchSingleContact();
     }, [contact, id]);
 
-    // ✅ loading fallback
+    // loading fallback
     if (!contact) return <Spinner />;
 
     return (
         <div className="p-6 space-y-6">
-            {/* 返回按钮 */}
+            {/* return button */}
             <Link href="/" className="inline-flex items-center text-black hover:text-gray-950 mb-4">
                 <FaArrowLeft size={24} className="mr-2" />
             </Link>
 
-            {/* 默认头像 */}
+            {/* profile picture */}
             <div className="flex justify-center mt-4">
                 <FaUserCircle size={150} className="text-gray-300" />
             </div>
 
-            {/* 联系人名字 */}
+            {/* contact name */}
             <h1 className="text-3xl font-bold text-center mt-2 mb-4">{contact.name}</h1>
 
-            {/* 联系按钮 */}
+            {/* contact buttons */}
             <div className="flex gap-4 mt-4">
                 <ContactActionButton icon={FaSms} />
                 <ContactActionButton icon={FaPhoneAlt} />
