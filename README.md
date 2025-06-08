@@ -9,7 +9,6 @@ A responsive "Contacts" application for browsing contacts, built with React and 
     - Mobile: List view with navigation to detail page
     - Tablet / Desktop: Master-detail layout with sidebar and contact details side by side
 - Visually clean and user-friendly UI
-- No Create/Update/Delete (per requirements)
 
 ## Tech Stack
 
