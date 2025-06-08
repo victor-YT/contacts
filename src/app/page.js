@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ContactCard from '@/components/ContactCard';
 import Spinner from '@/components/Spinner';
 import AZSidebar from '@/components/AZSidebar';
-import { ContactStore } from '@/store/ContactStore';
+import { ContactStore } from '@/store/contactStore';
 
 export default function HomePage() {
     const contacts = ContactStore((state) => state.contacts);
