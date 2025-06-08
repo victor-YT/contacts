@@ -16,6 +16,7 @@ export default function HomePage() {
     const [loading, setLoading] = useState(contacts.length === 0);
     const [searchQuery, setSearchQuery] = useState('');
 
+    // get data
     useEffect(() => {
         if (contacts.length > 0) {
             setLoading(false);
@@ -41,6 +42,7 @@ export default function HomePage() {
 
     if (loading) return <Spinner />;
 
+    // filter
     const filteredContacts = contacts.filter((contact) =>
         contact.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
