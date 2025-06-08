@@ -18,11 +18,7 @@ A responsive "Contacts" application for browsing contacts, built with React and 
 
 ## How to Run
 
-1. Clone the repository:
-    ```bash
-    git clone <repo-url>
-    cd contacts
-    ```
+1. Clone the repository
 
 2. Install dependencies:
     ```bash
@@ -37,9 +33,3 @@ A responsive "Contacts" application for browsing contacts, built with React and 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
-
-## Notes
-
-- This is a demo app as part of a technical assessment.
-- Contacts data fetched from https://jsonplaceholder.typicode.com/users.
-- No Create/Update/Delete operations implemented (per problem statement).
