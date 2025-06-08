@@ -4,30 +4,39 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ContactCard from '@/components/ContactCard';
 import Spinner from '@/components/Spinner';
-import AZSidebar from '@/components/AZSidebar'; // 引入 Sidebar
+import AZSidebar from '@/components/AZSidebar';
+import { ContactStore } from '@/store/ContactStore';
 
 export default function HomePage() {
-    const [contacts, setContacts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const contacts = ContactStore((state) => state.contacts);
+    const setContacts = ContactStore((state) => state.setContacts);
+    const [loading, setLoading] = useState(contacts.length === 0); // ✅ 关键优化 → 避免 flicker
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+        if (contacts.length > 0) {
+            setLoading(false); // ✅ 有缓存 → 不显示 loading
+            return;
+        }
+
         setLoading(true);
         const fetchData = async () => {
             const start = Date.now();
             const res = await fetch('https://jsonplaceholder.typicode.com/users');
             const data = await res.json();
 
+            // 存到 store
+            setContacts(data);
+
             const elapsed = Date.now() - start;
             const delay = Math.max(300 - elapsed, 0);
             setTimeout(() => {
-                setContacts(data);
                 setLoading(false);
             }, delay);
         };
 
         fetchData();
-    }, []);
+    }, [contacts, setContacts]);
 
     if (loading) return <Spinner />;
 
@@ -50,7 +59,7 @@ export default function HomePage() {
     const fullLetters = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), '#'];
 
     return (
-        <main className="relative p-4 space-y-4 max-w-md mx-auto bg-[#FAFAFA] min-h-screen pb-20">
+        <main className="relative p-4 space-y-4 max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-[#FAFAFA] min-h-screen pb-20">
             {/* AZ Sidebar */}
             <AZSidebar letters={fullLetters} />
 
@@ -91,7 +100,6 @@ export default function HomePage() {
                     </div>
                 );
             })}
-
         </main>
     );
 }
