@@ -18,7 +18,11 @@ A responsive "Contacts" application for browsing contacts, built with React and 
 
 ## How to Run
 
-1. Clone the repository
+1. Clone or open the project
+    ```bash
+   git clone https://github.com/victor-YT/contacts.git
+   cd contacts
+    ```
 
 2. Install dependencies:
     ```bash
