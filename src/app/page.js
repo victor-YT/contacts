@@ -63,7 +63,7 @@ export default function HomePage() {
             <div className="relative md:w-1/3 p-4 overflow-y-auto bg-[#FAFAFA]">
                 <AZSidebar letters={fullLetters} />
 
-                <h1 className="text-2xl font-bold text-[#AD2F4F] mb-4">Contacts</h1>
+                <h1 className="text-2xl font-bold text-[#AD2F4F] mb-4"> Contacts</h1>
 
                 <input
                     type="text"
